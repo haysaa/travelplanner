@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import time
+import prompts
 
 # --- 1. CONFIGURATION ---
 st.set_page_config(page_title="AI Travel Planner", layout="wide")
@@ -41,6 +42,26 @@ st.markdown("""
 # using HTML to center text and control size
 st.markdown("<h1 style='text-align: center; color: #FAFAFA;'>✈ AI-Powered Travel Itinerary Planner</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #AAAAAA; margin-bottom: 30px;'>Cloud Computing & Distributed Systems Project</p>", unsafe_allow_html=True)
+# --- TEMPORARY DEBUGGING TOOL ---
+if st.button("🐞 Debug: Show Me The Prompt"):
+    # 1. Fake the data (simulate what the map would find)
+    fake_pois = ["Galata Tower", "Spice Bazaar", "Hagia Sophia"]
+    
+    # 2. Call your function
+    # Note: We use 'prompts.create_travel_prompt' to access the file you made
+    test_prompt = prompts.create_travel_prompt(
+        destination="Istanbul",
+        duration=3,
+        budget="Moderate",
+        interests=["History", "Food"],
+        poi_list=fake_pois
+    )
+    
+    # 3. Display it raw so you can check for typos/formatting
+    st.text_area("Generated Prompt", test_prompt, height=300)
+    
+    # 4. The "Manual" Test
+    st.info("👉 Copy the text above and paste it into ChatGPT or Gemini etc. to see if it produces a good itinerary.")
 
 # --- 3. INPUTS (Top Bar) ---
 with st.container():
