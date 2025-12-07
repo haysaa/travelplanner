@@ -1,4 +1,6 @@
 streamlit
 pandas
 google-generativeai
+google-cloud-aiplatform
+google-maps
 requests
